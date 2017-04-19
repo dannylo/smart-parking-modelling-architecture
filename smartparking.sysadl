@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sysADL_Sintax:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysADL_Sintax="com.sysADL_Sintax">
+  <packages name="SysADL.types">
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Int"/>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Boolean"/>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="String"/>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Void"/>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Real"/>
+    <architectures xsi:type="sysADL_Sintax:Enumeration" name="StatusVaga">
+      <literals key="Verde"/>
+      <literals key="Vermelho"/>
+      <literals key="Amarelo"/>
+      <literals key="Azul"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Ticket"/>
+    <architectures xsi:type="sysADL_Sintax:Enumeration" name="FormaPagamento">
+      <literals key="Dinheiro"/>
+      <literals key="Cartão"/>
+    </architectures>
+  </packages>
+  <packages name="Tipos e Portas" imports="//@packages[name='SysADL.types']">
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="InBoolean">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="OutBoolean" flowProperties="out">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="OutStatusVaga" flowProperties="out">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.5"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="InTicket">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.6"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="OutTicket" flowProperties="out">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.6"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="InStatusVaga">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.5"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConnectorDef" name="BooleanConnector">
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+      <flows flowType="//@packages[name='SysADL.types']/@architectures.1" source="//@packages[name='Tipos%20e%20Portas']/@architectures.6/@ports.0" destination="//@packages[name='Tipos%20e%20Portas']/@architectures.6/@ports.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConnectorDef" name="StatusVagaConnector">
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+      <flows flowType="//@packages[name='SysADL.types']/@architectures.5" source="//@packages[name='Tipos%20e%20Portas']/@architectures.7/@ports.0" destination="//@packages[name='Tipos%20e%20Portas']/@architectures.7/@ports.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConnectorDef" name="TicketConnector">
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
+      <flows flowType="//@packages[name='SysADL.types']/@architectures.6" source="//@packages[name='Tipos%20e%20Portas']/@architectures.8/@ports.0" destination="//@packages[name='Tipos%20e%20Portas']/@architectures.8/@ports.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="InQtdVagas">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.0"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="OutQtdVagas" flowProperties="out">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.0"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConnectorDef" name="QtdVagasConnector">
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.9"/>
+      <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
+      <flows flowType="//@packages[name='SysADL.types']/@architectures.0" source="//@packages[name='Tipos%20e%20Portas']/@architectures.11/@ports.0" destination="//@packages[name='Tipos%20e%20Portas']/@architectures.11/@ports.1"/>
+    </architectures>
+  </packages>
+  <packages name="SmartParking" imports="//@packages[name='Tipos%20e%20Portas']">
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SensorPresenca">
+      <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="Lampada">
+      <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ControleVagas">
+      <ports name="vagasRestantes"/>
+      <composite>
+        <components name="SensorPresencaNormal" definition="//@packages[name='SmartParking']/@architectures.0">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="ConversorPresencaNormal" definition="//@packages[name='SmartParking']/@architectures.3">
+          <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+        </components>
+        <components name="L1" definition="//@packages[name='SmartParking']/@architectures.1">
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
+        </components>
+        <components name="SensorPresencaDeficiente" definition="//@packages[name='SmartParking']/@architectures.5">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="SensorPresencaIdoso" definition="//@packages[name='SmartParking']/@architectures.4">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="ConversorPresencaIdoso" definition="//@packages[name='SmartParking']/@architectures.3">
+          <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+        </components>
+        <components name="ConversorPresencaDeficiente" definition="//@packages[name='SmartParking']/@architectures.3">
+          <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+        </components>
+        <components name="L2" definition="//@packages[name='SmartParking']/@architectures.1">
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
+        </components>
+        <components name="L3" definition="//@packages[name='SmartParking']/@architectures.1">
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
+        </components>
+        <components name="ContadorVagas" definition="//@packages[name='SmartParking']/@architectures.7">
+          <ports name="vagaBoolean" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="totalVagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
+        </components>
+        <delegations/>
+        <delegations portProxy="//@packages[name='SmartParking']/@architectures.2/@ports.0" fullPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.9/@ports.1"/>
+        <connectors name="newConnector">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0"/>
+        </connectors>
+        <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
+        </connectors>
+        <connectors name="sc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.7">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+        </connectors>
+        <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.0"/>
+        </connectors>
+        <connectors name="sc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.7">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.7/@ports.0"/>
+        </connectors>
+        <connectors name="bc3" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.4/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.6/@ports.1"/>
+        </connectors>
+        <connectors name="sc3" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.7">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.6/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.8/@ports.0"/>
+        </connectors>
+        <connectors name="bc4" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.9/@ports.0"/>
+        </connectors>
+        <connectors name="bc5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.9/@ports.0"/>
+        </connectors>
+        <connectors name="bc5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.4/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.9/@ports.0"/>
+        </connectors>
+      </composite>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ConversorPresencaCor">
+      <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SensorPresencaIdoso">
+      <ports name="temCarro" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SensorPresencaDeficiente">
+      <ports name="temCarro" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="MonitorVagas">
+      <ports name="Qtdvagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.9"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ContadorVagas">
+      <ports name="vagaBoolean" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="totalVagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="CancelaEletronica">
+      <ports name="aberturaEntrada" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="aberturaSaida" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ImpressoraTicket">
+      <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="abrirCancela" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ControleOperadorEmergencia">
+      <ports name="aberturaEmergencial" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ControleAberturaCancela">
+      <composite>
+        <components name="CancelaEletronica" definition="//@packages[name='SmartParking']/@architectures.8">
+          <ports name="aberturaEntrada" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="aberturaSaida" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+        </components>
+        <components name="ControleOperadorEmergencia" definition="//@packages[name='SmartParking']/@architectures.10">
+          <ports name="aberturaEmergencial" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="SensorPresenca" definition="//@packages[name='SmartParking']/@architectures.0">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="ImpressoraTicket" definition="//@packages[name='SmartParking']/@architectures.9">
+          <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="abrirCancela" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.1/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.0/@ports.0"/>
+        </connectors>
+        <connectors name="bc3" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.2/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.3/@ports.0"/>
+        </connectors>
+        <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.3/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.11/@composite/@components.0/@ports.0"/>
+        </connectors>
+      </composite>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="MaquinaPagamento">
+      <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+    </architectures>
+  </packages>
+</sysADL_Sintax:Model>
