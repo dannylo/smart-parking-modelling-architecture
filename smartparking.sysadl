@@ -243,6 +243,8 @@
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="MaquinaPagamento">
       <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.12"/>
+      <ports name="ticketPagar" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+      <ports name="ticketConusulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="LeitorTicketSaida">
       <ports name="commandoCancela" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
@@ -318,7 +320,15 @@
         </components>
         <components name="MaquinaPagamento" definition="//@packages[name='SmartParking']/@architectures.10">
           <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.12"/>
+          <ports name="ticketPagar" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+          <ports name="ticketConusulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
         </components>
+        <connectors name="dec" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.14">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.4"/>
+        </connectors>
+        <connectors name="tc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.2" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.2"/>
+        </connectors>
         <connectors name="dec" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.14">
           <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.4" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.0"/>
         </connectors>
