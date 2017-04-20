@@ -75,6 +75,9 @@
       <ports definition="//@packages[name='Tipos%20e%20Portas']/@architectures.13"/>
       <flows flowType="//@packages[name='SysADL.types']/@architectures.8" source="//@packages[name='Tipos%20e%20Portas']/@architectures.14/@ports.0" destination="//@packages[name='Tipos%20e%20Portas']/@architectures.14/@ports.1"/>
     </architectures>
+    <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="inFormaPagamento">
+      <flowType definition="//@packages[name='SysADL.types']/@architectures.7"/>
+    </architectures>
   </packages>
   <packages name="SmartParking" imports="//@packages[name='Tipos%20e%20Portas']">
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SensorPresenca">
@@ -212,7 +215,6 @@
           <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
           <ports name="gerarTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
           <ports name="ticketConsulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
-          <ports name="pagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
           <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.13"/>
         </components>
         <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
@@ -245,6 +247,8 @@
       <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.12"/>
       <ports name="ticketPagar" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
       <ports name="ticketConusulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
+      <ports name="formaPagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.15"/>
+      <ports name="sucesso" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="LeitorTicketSaida">
       <ports name="commandoCancela" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
@@ -256,7 +260,6 @@
       <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
       <ports name="gerarTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
       <ports name="ticketConsulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
-      <ports name="pagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
       <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.13"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ControleSaidaVeiculos">
@@ -270,21 +273,25 @@
           <ports name="pagamentoResult" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
           <ports name="ticketLido" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
         </components>
-        <components name="TicketHost" definition="//@packages[name='SmartParking']/@architectures.12">
-          <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
-          <ports name="gerarTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
-          <ports name="ticketConsulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
-          <ports name="pagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
-          <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.13"/>
+        <components name="HostPagamento" definition="//@packages[name='SmartParking']/@architectures.18">
+          <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+          <ports name="pagou" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+          <ports name="setPagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
         </components>
         <connectors name="tc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.2/@ports.2"/>
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.1"/>
         </connectors>
         <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.2/@ports.3" secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.2"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.2"/>
         </connectors>
         <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
           <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.0/@ports.0"/>
+        </connectors>
+        <connectors name="tc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.2/@ports.0"/>
+        </connectors>
+        <connectors name="bc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.2/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.13/@composite/@components.1/@ports.2"/>
         </connectors>
       </composite>
     </architectures>
@@ -315,24 +322,64 @@
           <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
           <ports name="gerarTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
           <ports name="ticketConsulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
-          <ports name="pagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
           <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.13"/>
+        </components>
+        <components name="HostPagamento" definition="//@packages[name='SmartParking']/@architectures.18">
+          <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+          <ports name="pagou" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+          <ports name="setPagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
         </components>
         <components name="MaquinaPagamento" definition="//@packages[name='SmartParking']/@architectures.10">
           <ports name="dadosEstacionamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.12"/>
           <ports name="ticketPagar" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
           <ports name="ticketConusulta" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
+          <ports name="formaPagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.15"/>
+          <ports name="sucesso" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
         </components>
         <connectors name="dec" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.14">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.4"/>
-        </connectors>
-        <connectors name="tc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.2" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.2"/>
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.3"/>
         </connectors>
         <connectors name="dec" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.14">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.4" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.0"/>
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.3"/>
+        </connectors>
+        <connectors name="tc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.2"/>
+        </connectors>
+        <connectors name="tc" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.2/@ports.2" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.0"/>
+        </connectors>
+        <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.2/@ports.4" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.1/@ports.2"/>
+        </connectors>
+        <connectors name="tc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.8">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.2/@ports.2" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.2"/>
+        </connectors>
+        <connectors name="dec" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.14">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.0/@ports.3" secondPort="//@packages[name='SmartParking']/@architectures.16/@composite/@components.2/@ports.0"/>
         </connectors>
       </composite>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SmartParking">
+      <composite>
+        <components name="ControleVagas" definition="//@packages[name='SmartParking']/@architectures.2">
+          <ports name="vagasRestantes" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
+        </components>
+        <components name="MonitorVagas" definition="//@packages[name='SmartParking']/@architectures.4">
+          <ports name="Qtdvagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.9"/>
+        </components>
+        <components name="ControleAberturaCancela" definition="//@packages[name='SmartParking']/@architectures.9"/>
+        <components name="ControleSaidaVeiculos" definition="//@packages[name='SmartParking']/@architectures.13"/>
+        <components name="SistemaPagamento" definition="//@packages[name='SmartParking']/@architectures.16"/>
+        <components name="SistemaRelatorios" definition="//@packages[name='SmartParking']/@architectures.15"/>
+        <connectors name="qtdVagasConnector" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.11">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.17/@composite/@components.0/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.17/@composite/@components.1/@ports.0"/>
+        </connectors>
+      </composite>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ComponentDef" name="HostPagamento">
+      <ports name="ticket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+      <ports name="pagou" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+      <ports name="setPagamento" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
     </architectures>
   </packages>
 </sysADL_Sintax:Model>
