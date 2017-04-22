@@ -425,15 +425,23 @@
           <pinIn pinName="//@packages[name='SmartParking']/@architectures.23/@inParameters.0"/>
           <pinIn pinName="//@packages[name='SmartParking']/@architectures.23/@inParameters.1"/>
         </actions>
-        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.1" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@actions[name='converterVagas']/@pinIn.0"/>
-        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.0" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@actions[name='converterVagas']/@pinIn.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.0"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@outParameters.0"/>
+        <flows xsi:type="sysADL_Sintax:ActivityFlow" source="//@packages[name='SmartParking']/@architectures.22/@acbody/@dataObjects.0" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@actions[name='converterVagas']/@pinIn.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.1" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@dataObjects.0"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@inParameters.0" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@actions[name='converterVagas']/@pinIn.0"/>
         <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.22/@outParameters.0" target="//@packages[name='SmartParking']/@architectures.22/@acbody/@actions[name='converterVagas']"/>
-        <dataObjects xsi:type="sysADL_Sintax:DataStore" name="SensoresTipos" type="//@packages[name='SysADL.types']/@architectures.5"/>
+        <dataObjects xsi:type="sysADL_Sintax:DataStore" name="SensoresTipos" type="//@packages[name='SysADL.types']/@architectures.2"/>
       </acbody>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ActionDef" name="converterVagas" returnType="//@packages[name='SysADL.types']/@architectures.5">
-      <inParameters name="sensorName" definition="//@packages[name='SysADL.types']/@architectures.2"/>
       <inParameters name="sensorStatus" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+      <inParameters name="codigoSensor" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <constraints definition="//@packages[name='SmartParking']/@architectures.37" kind="preCondition"/>
+      <delegations source="//@packages[name='SmartParking']/@architectures.23/@inParameters.0" target="//@packages[name='SmartParking']/@architectures.37/@paramIn.1"/>
+      <delegations source="//@packages[name='SmartParking']/@architectures.23/@inParameters.1" target="//@packages[name='SmartParking']/@architectures.37/@paramIn.0"/>
+      <delegations source="//@packages[name='SmartParking']/@architectures.23" target="//@packages[name='SmartParking']/@architectures.37/@paramOut.0"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ActivityDef" name="GerarTicketEntrada">
       <inParameters name="presenca" definition="//@packages[name='SysADL.types']/@architectures.1"/>
@@ -536,6 +544,51 @@
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ActionDef" name="realizarPagamento" returnType="//@packages[name='SysADL.types']/@architectures.1">
       <inParameters name="dados" definition="//@packages[name='SysADL.types']/@architectures.8"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConstraintDef" name="VerificarCorVaga">
+      <paramIn xsi:type="sysADL_Sintax:Pin" name="codigoSensor" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <paramIn xsi:type="sysADL_Sintax:Pin" name="presenca" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+      <paramOut xsi:type="sysADL_Sintax:Pin" name="status" definition="//@packages[name='SysADL.types']/@architectures.5"/>
+      <equation value="(presenca -> status = Vermelha) &amp;&amp; [(!presenca &amp;&amp; codigoSensor == &quot;N&quot;) ->status = Verde] &amp;&amp; [(!presenca &amp;&amp; codigoSensor==&quot;I&quot;) -> status = Amarelo] &amp;&amp; [(!presenca &amp;&amp; codigoSensor==&quot;D&quot;) -> status = Azul]"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ActivityDef" name="GerarRelatorios">
+      <inParameters name="periodoInicio" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="periodoFim" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="dia" definition="//@packages[name='SysADL.types']/@architectures.0"/>
+      <inParameters name="mes" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="hora" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="semana" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <outParameters name="report" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <acbody>
+        <actions name="gerarRelatorioOcupacao" definition="//@packages[name='SmartParking']/@architectures.39">
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.39/@inParameters.0"/>
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.39/@inParameters.1"/>
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.39/@inParameters.2"/>
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.39/@inParameters.3"/>
+        </actions>
+        <actions name="gerarRelatorioFinanceiro" definition="//@packages[name='SmartParking']/@architectures.40">
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.40/@inParameters.0"/>
+          <pinIn pinName="//@packages[name='SmartParking']/@architectures.40/@inParameters.1"/>
+        </actions>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.2" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioOcupacao']/@pinIn.0"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.4" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioOcupacao']/@pinIn.2"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.3" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioOcupacao']/@pinIn.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.5" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioOcupacao']/@pinIn.3"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@outParameters.0" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioOcupacao']"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.0" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioFinanceiro']/@pinIn.0"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@inParameters.1" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioFinanceiro']/@pinIn.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.38/@outParameters.0" target="//@packages[name='SmartParking']/@architectures.38/@acbody/@actions[name='gerarRelatorioFinanceiro']"/>
+      </acbody>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ActionDef" name="gerarRelatorioOcupacao" returnType="//@packages[name='SysADL.types']/@architectures.2">
+      <inParameters name="dia" definition="//@packages[name='SysADL.types']/@architectures.0"/>
+      <inParameters name="mes" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="hora" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="semana" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ActionDef" name="gerarRelatorioFinanceiro" returnType="//@packages[name='SysADL.types']/@architectures.2">
+      <inParameters name="periodoIni" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <inParameters name="periodoFim" definition="//@packages[name='SysADL.types']/@architectures.2"/>
     </architectures>
   </packages>
 </sysADL_Sintax:Model>
