@@ -568,5 +568,35 @@
         <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.36/@outParameters.0" target="//@packages[name='SmartParking']/@architectures.36/@acbody/@actions[name='gerarRelatorioOcupacao']"/>
       </acbody>
     </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="ContarVagasEX" returnType="//@packages[name='SysADL.types']/@architectures.0">
+      <actions xsi:type="sysADL_Sintax:Expression" value="Int cont = 0; for each sensor in arraySensores then if !sensor then cont++ end return cont"/>
+      <params name="arraySensores" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="converterVagasEX" returnType="//@packages[name='SysADL.types']/@architectures.5">
+      <actions xsi:type="sysADL_Sintax:Expression" value="if presenca then return StatusVaga::Vermelho else if codigoSensor == &quot;N&quot; then return StatusVaga::Verde else if codigoSensor == &quot;I&quot; then return StatusVaga::Amarelo else if codigoSensor == &quot;D&quot; then return StatusVaga::Azul "/>
+      <params name="codigoSensor" definition="//@packages[name='SysADL.types']/@architectures.2"/>
+      <params name="presenca" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="gerarTicketEX" returnType="//@packages[name='SysADL.types']/@architectures.6">
+      <actions xsi:type="sysADL_Sintax:Expression" value="if presenca then return new Ticket"/>
+      <params name="presenca" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="consultarDividaEX" returnType="//@packages[name='SysADL.types']/@architectures.8">
+      <actions xsi:type="sysADL_Sintax:Expression" value=""/>
+      <actions xsi:type="sysADL_Sintax:Expression" value="return DadosEstacionamento"/>
+      <params name="ticket" definition="//@packages[name='SysADL.types']/@architectures.6"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="atualizarSistemasRelatorio" returnType="//@packages[name='SysADL.types']/@architectures.8">
+      <params name="sign" definition="//@packages[name='SysADL.types']/@architectures.3"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="consultarPagamentoEX" returnType="//@packages[name='SysADL.types']/@architectures.1">
+      <actions xsi:type="sysADL_Sintax:Expression" value="pagamento = "/>
+      <params name="ticket" definition="//@packages[name='SysADL.types']/@architectures.6"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="processarPagamentoEX" returnType="//@packages[name='SysADL.types']/@architectures.1">
+      <params name="tcket" definition="//@packages[name='SysADL.types']/@architectures.6"/>
+      <params name="pagamentoSucesso" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:Executable" name="gerarRelatorioOcupacaoEX" returnType="//@packages[name='SysADL.types']/@architectures.2"/>
   </packages>
 </sysADL_Sintax:Model>
