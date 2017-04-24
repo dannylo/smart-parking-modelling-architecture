@@ -1406,6 +1406,10 @@
             <children xmi:type="notation:Node" xmi:id="_bt-XACLIEeeAeserNn2lBQ" type="3009" element="_btE_ICLIEeeAeserNn2lBQ">
               <children xmi:type="notation:Node" xmi:id="_bt--ECLIEeeAeserNn2lBQ" type="5004"/>
               <children xmi:type="notation:Node" xmi:id="_bt--ESLIEeeAeserNn2lBQ" type="7003">
+                <children xmi:type="notation:Node" xmi:id="_iHd1ECkdEeeYS7g-oEMqMg" type="3010" element="_iDod8CkdEeeYS7g-oEMqMg">
+                  <styles xmi:type="notation:FontStyle" xmi:id="_iHecICkdEeeYS7g-oEMqMg" fontName="Segoe UI" fontHeight="8"/>
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_iHecISkdEeeYS7g-oEMqMg"/>
+                </children>
                 <styles xmi:type="notation:SortingStyle" xmi:id="_bt--EiLIEeeAeserNn2lBQ"/>
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_bt--EyLIEeeAeserNn2lBQ"/>
               </children>
@@ -1547,6 +1551,14 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Structural']/@ownedRepresentations[name='SysADL.BDD']/@defaultLayer/@containerMappings[name='BDD']/@subContainerMappings[name='BDD.DataTypeDef']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Structural']/@ownedRepresentations[name='SysADL.BDD']/@defaultLayer/@containerMappings[name='BDD']/@subContainerMappings[name='BDD.DataTypeDef']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_iDod8CkdEeeYS7g-oEMqMg" name="pago:Boolean">
+          <target xmi:type="sysADL_Sintax:TypeUse" href="smartparking.sysadl#//@packages[name='SysADL.types']/@architectures.6/@dataTypeAttributes.0"/>
+          <semanticElements xmi:type="sysADL_Sintax:TypeUse" href="smartparking.sysadl#//@packages[name='SysADL.types']/@architectures.6/@dataTypeAttributes.0"/>
+          <ownedStyle xmi:type="diagram:Dot" xmi:id="_iDvLoCkdEeeYS7g-oEMqMg" showIcon="false">
+            <description xmi:type="style:DotDescription" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Structural']/@ownedRepresentations[name='SysADL.BDD']/@defaultLayer/@containerMappings[name='BDD']/@subContainerMappings[name='BDD.DataTypeDef']/@subNodeMappings[name='BDD.DataTypeAttribute']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Structural']/@ownedRepresentations[name='SysADL.BDD']/@defaultLayer/@containerMappings[name='BDD']/@subContainerMappings[name='BDD.DataTypeDef']/@subNodeMappings[name='BDD.DataTypeAttribute']"/>
+        </ownedElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_-QRPMCSxEeeguNF3xHslSQ" name="&lt;&lt;enumeration>>&#xA;FormaPagamento">
         <target xmi:type="sysADL_Sintax:Enumeration" href="smartparking.sysadl#//@packages[name='SysADL.types']/@architectures.7"/>
@@ -12471,7 +12483,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Executable']/@ownedRepresentations[name='SysADL.Execution.BDD']/@defaultLayer/@containerMappings[name='SysADL.Execution.Self']/@subContainerMappings[name='SysADL.Execution.Executable']/@subContainerMappings[name='Execution.CP.Expr']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/SysADL.viewpoints/description/SysADL_vp.odesign#//@ownedViewpoints[name='SysADL.Executable']/@ownedRepresentations[name='SysADL.Execution.BDD']/@defaultLayer/@containerMappings[name='SysADL.Execution.Self']/@subContainerMappings[name='SysADL.Execution.Executable']/@subContainerMappings[name='Execution.CP.Expr']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ZIGzkCkAEee3-JrEK9BQaQ" name="pagamento = ">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ZIGzkCkAEee3-JrEK9BQaQ" name="if ticket::pago then return true; else then return false; ">
             <target xmi:type="sysADL_Sintax:Expression" href="smartparking.sysadl#//@packages[name='SmartParking']/@architectures.42/@actions.0"/>
             <semanticElements xmi:type="sysADL_Sintax:Expression" href="smartparking.sysadl#//@packages[name='SmartParking']/@architectures.42/@actions.0"/>
             <ownedStyle xmi:type="diagram:Dot" xmi:id="_ZIHaoCkAEee3-JrEK9BQaQ" showIcon="false" labelAlignment="LEFT" labelPosition="node">

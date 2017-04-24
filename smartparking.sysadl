@@ -12,7 +12,9 @@
       <literals key="Amarelo"/>
       <literals key="Azul"/>
     </architectures>
-    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Ticket"/>
+    <architectures xsi:type="sysADL_Sintax:DataTypeDef" name="Ticket">
+      <dataTypeAttributes name="pago" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+    </architectures>
     <architectures xsi:type="sysADL_Sintax:Enumeration" name="FormaPagamento">
       <literals key="Dinheiro"/>
       <literals key="Cartão"/>
@@ -590,7 +592,7 @@
       <params name="sign" definition="//@packages[name='SysADL.types']/@architectures.3"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:Executable" name="consultarPagamentoEX" returnType="//@packages[name='SysADL.types']/@architectures.1">
-      <actions xsi:type="sysADL_Sintax:Expression" value="pagamento = "/>
+      <actions xsi:type="sysADL_Sintax:Expression" value="if ticket::pago then return true; else then return false; "/>
       <params name="ticket" definition="//@packages[name='SysADL.types']/@architectures.6"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:Executable" name="processarPagamentoEX" returnType="//@packages[name='SysADL.types']/@architectures.1">
