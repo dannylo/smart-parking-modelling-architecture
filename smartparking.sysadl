@@ -637,4 +637,25 @@
       <params name="dadosEstacionamento" definition="//@packages[name='SysADL.types']/@architectures.8"/>
     </architectures>
   </packages>
+  <requirements name="Gerenciar Saída de veículos" id="3.0" text="Antes de o motorista entrar no estacionamento um ticket com código de barras deve ser impresso e recolhido pelo motorista. Associado ao código de barras impresso no ticket o sistema deve armazenar a hora em que o ticket foi gerado ">
+    <composition name="Abrir Cancela Eletrônica (Saida)" id="3.1" text="A cancela eletrônica deve abrir automaticamente no momento em que o motorista apresentar o ticket devidamente paga na saída do estacionamento"/>
+    <composition name="Ler Ticket" id="3.2" text="A partir da leitura do código de barras impresso no ticket o sistema deve recuperar todas as informações associadas ao ticket (horário de entrada no estacionamento, valor da taxa de estacionamento,  se a taxa foi ou não paga, se foi paga o horário de pagamento )."/>
+  </requirements>
+  <requirements name="Realizar Pagamento" id="5.1" text="O sistema deve permitir ao usuário realizar o pagamento em caixas automáticos com cartão ou dinheiro."/>
+  <requirements name="Gerar Relatórios" id="6.0" text="O sistema deve permitir ao gerente consultar a ocupação do estacionamento e gerar relatórios financeiros.">
+    <composition name="Gerar Relatório Financeiro" id="6.1" text="O sistema deve permitir ao gerente gerar relatórios que detalhem a arrecadação do estacionamento em períodos de tempo informados pelo gerente"/>
+    <composition name="Consultar Ocupação" id="6.2" text="O sistema deve permitir ao gerente consultar a ocupação do estacionamento por dia, hora, semana e mês."/>
+  </requirements>
+  <requirements name="Gerenciar Entrada de Veículos" id="2.0" text="O sistema deve controlar a entrada de veículos por meio de uma cancela eletrônica. Um ticket com código de barras deve ser impresso para cada motorista antes de  o mesmo entrar no estacionamento.">
+    <composition name="Abrir Cancela Eletrônica (Entrada)" id="2.2" text="A cancela eletrônica deve abrir automaticamente após o motorista recolher o ticket impresso na entrada"/>
+    <composition name="Imprimir Ticket" id="2.1" text="Antes de o motorista entrar no estacionamento um ticket com código de barras deve ser impresso e recolhido pelo motorista. Associado ao código de barras impresso no ticket o sistema deve armazenar a hora em que o ticket foi gerado "/>
+  </requirements>
+  <requirements name="Gerenciar Pagamento" id="5.0" text="O sistema deve permitir ao usuário realizar o pagamento da taxa de estacionamento. O pagamento deve ser calculado com base no tempo em que o veículo esteve no estacionamento." derive="5.1"/>
+  <requirements name="Gerenciar Vagas" id="1.0" text="O sistema deve monitorar cada uma das vagas do estacionamento e sinalizar o status da vaga por meio de lâmpadas, diferenciando as vagas destinadas a idosos e deficientes físicos das demais">
+    <composition name="Sinalizar Status da Vaga" id="1.1" text="O status da vaga deve ser representado pela cor da lâmpada associada a ela, a cor vermelha indica que a vaga está ocupada, a cor verde indica que a vaga está disponível, a cor amarela indica que a vaga está disponível e que é destinada a idosos, a cor azul indica que a vaga está disponível e que é destinada à deficientes físicos."/>
+    <composition name="Detectar Status da Vaga" id="1.2" text="O sistema deve detectar para cada vaga do estacionamento se existe ou não um veículo estacionado"/>
+    <composition name="Sinalizar Quantidade de Vagas Disponíveis" id="1.3" text="O sistema deve indicar em painéis a quantidade de vagas disponíveis em cada ala do estacionamento"/>
+  </requirements>
+  <requirements name="Detectar Veículo" id="4.0" text="Ao se se aproximar com o veículo da cancela eletrônica a presença do veículo deve ser detectada de forma automática"/>
+  <requirements name="Abrir Cancela Emergencial" id="7.0" text="Em casos de emergência o operador do estacionamento poderá abrir a cancela de emergência."/>
 </sysADL_Sintax:Model>
