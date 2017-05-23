@@ -98,6 +98,19 @@
     <architectures xsi:type="sysADL_Sintax:SimplePortDef" name="Mes">
       <flowType definition="//@packages[name='SysADL.types']/@architectures.2"/>
     </architectures>
+    <architectures xsi:type="sysADL_Sintax:CompositePortDef" name="TicketPortInSV">
+      <ports name="requestTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="ticketGerado" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.4"/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:ConnectorDef" name="TicketConnectorSV">
+      <ports name="portRequest" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.22"/>
+      <ports name="portResponse" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.24"/>
+      <composite/>
+    </architectures>
+    <architectures xsi:type="sysADL_Sintax:CompositePortDef" name="TicketPortOutSV">
+      <ports name="responseTicket" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+      <ports name="ticketGeradoOut" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.3"/>
+    </architectures>
   </packages>
   <packages name="SmartParking" imports="//@packages[name='Tipos%20e%20Portas']">
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="SensorPresenca">
