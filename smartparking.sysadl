@@ -122,10 +122,6 @@
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ControleVagas">
       <ports name="vagasRestantes" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
       <composite>
-        <components name="ConversorPresencaNormal" definition="//@packages[name='SmartParking']/@architectures.3">
-          <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
-          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
-        </components>
         <components name="L1" definition="//@packages[name='SmartParking']/@architectures.1">
           <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.5"/>
         </components>
@@ -133,19 +129,31 @@
           <ports name="vagaBoolean" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
           <ports name="totalVagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.10"/>
         </components>
-        <components name="SensorPresenca" definition="//@packages[name='SmartParking']/@architectures.0">
+        <components name="SensorPresencaNormal" definition="//@packages[name='SmartParking']/@architectures.0">
           <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
         </components>
+        <components name="SensorPresencaDef" definition="//@packages[name='SmartParking']/@architectures.0">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="SensorPresencaIdo" definition="//@packages[name='SmartParking']/@architectures.0">
+          <ports name="temPresenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.1"/>
+        </components>
+        <components name="ConversorPresencaCor" definition="//@packages[name='SmartParking']/@architectures.3">
+          <ports name="presencaNomal1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+          <ports name="presencaDeficiente1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+          <ports name="presencaIdoso1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+        </components>
         <delegations/>
-        <delegations portProxy="//@packages[name='SmartParking']/@architectures.2/@ports.0" fullPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.1"/>
+        <delegations portProxy="//@packages[name='SmartParking']/@architectures.2/@ports.0" fullPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.1"/>
         <connectors name="newConnector">
           <bindings/>
         </connectors>
         <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0"/>
+          <bindings/>
         </connectors>
         <connectors name="sc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.7">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0"/>
         </connectors>
         <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
           <bindings/>
@@ -160,16 +168,16 @@
           <bindings/>
         </connectors>
         <connectors name="bc4" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
         </connectors>
         <connectors name="bc5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
         </connectors>
         <connectors name="bc5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
         </connectors>
         <connectors name="bc1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0"/>
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
         </connectors>
         <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
           <bindings/>
@@ -177,20 +185,40 @@
         <connectors name="bc3" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
           <bindings/>
         </connectors>
-        <connectors name="bc4" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+        <connectors name="booleanC4" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
         </connectors>
         <connectors name="bc5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
         </connectors>
         <connectors name="bc6" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
-          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0"/>
+          <bindings secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
+        </connectors>
+        <connectors name="booleanC2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.2"/>
+        </connectors>
+        <connectors name="booleanC3" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.4/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.3"/>
+        </connectors>
+        <connectors name="booleanC1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.2/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.0"/>
+        </connectors>
+        <connectors name="booleanC5" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
+        </connectors>
+        <connectors name="booleanC6" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.4/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.1/@ports.0"/>
+        </connectors>
+        <connectors name="StatusC1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.7">
+          <bindings firstPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.5/@ports.1" secondPort="//@packages[name='SmartParking']/@architectures.2/@composite/@components.0/@ports.0"/>
         </connectors>
       </composite>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="ConversorPresencaCor">
-      <ports name="presenca" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="presencaNomal1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
       <ports name="status" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.2"/>
+      <ports name="presencaDeficiente1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
+      <ports name="presencaIdoso1" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.0"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ComponentDef" name="MonitorVagas">
       <ports name="Qtdvagas" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.9"/>
@@ -495,8 +523,9 @@
       <inParameters name="dadosEstacionamento" definition="//@packages[name='SysADL.types']/@architectures.8"/>
     </architectures>
     <architectures xsi:type="sysADL_Sintax:ActivityDef" name="ConversorPresencaVagaAC">
-      <inParameters name="presenca" definition="//@packages[name='SysADL.types']/@architectures.1"/>
-      <outParameters name="status" definition="//@packages[name='SysADL.types']/@architectures.5"/>
+      <inParameters name="presencaN" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+      <inParameters name="presencaD" definition="//@packages[name='SysADL.types']/@architectures.1"/>
+      <inParameters name="presencaI" definition="//@packages[name='SysADL.types']/@architectures.1"/>
       <acbody>
         <actions name="converterVagas" definition="//@packages[name='SmartParking']/@architectures.31">
           <pinIn pinName="//@packages[name='SmartParking']/@architectures.31/@inParameters.0"/>
@@ -504,7 +533,9 @@
         </actions>
         <flows xsi:type="sysADL_Sintax:ActivityFlow" source="//@packages[name='SmartParking']/@architectures.30/@acbody/@dataObjects.0" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']/@pinIn.0"/>
         <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.30/@inParameters.0" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']/@pinIn.1"/>
-        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.30/@outParameters.0" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.30/@inParameters.2" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']/@pinIn.1"/>
+        <flows xsi:type="sysADL_Sintax:ActivityDelegation" source="//@packages[name='SmartParking']/@architectures.30/@inParameters.1" target="//@packages[name='SmartParking']/@architectures.30/@acbody/@actions[name='converterVagas']/@pinIn.1"/>
         <dataObjects xsi:type="sysADL_Sintax:DataStore" name="CodigosSensores" type="//@packages[name='SysADL.types']/@architectures.2"/>
       </acbody>
     </architectures>
