@@ -315,7 +315,7 @@
         <connectors name="ticketCompC" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.23">
           <bindings firstPort="//@packages[name='SmartParking']/@architectures.9/@composite/@components.4/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.9/@composite/@components.3/@ports.1"/>
         </connectors>
-        <connectors name="newConnector">
+        <connectors name="bc2" definition="//@packages[name='Tipos%20e%20Portas']/@architectures.6">
           <bindings firstPort="//@packages[name='SmartParking']/@architectures.9/@composite/@components.3/@ports.0" secondPort="//@packages[name='SmartParking']/@architectures.9/@composite/@components.0/@ports.0"/>
         </connectors>
       </composite>
